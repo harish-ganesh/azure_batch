@@ -42,7 +42,7 @@ def create_job_schedule(batch_client, job_schedule_id, vm_size, vm_count):
                 ),
                 start_task=batchmodels.StartTask(
                     command_line="/bin/bash -c "
-                                 "\"$AZ_BATCH_APP_PACKAGE_commodity_forecasting_2/DSCommodities/azure_batch/job_schedular_node_startup_tasks.sh\"",
+                                 "\"$AZ_BATCH_APP_PACKAGE_azure_batch_1/azure_batch/job_schedular_node_startup_tasks.sh\"",
                     wait_for_success=True,
                     user_identity=batchmodels.UserIdentity(
                         auto_user=batchmodels.AutoUserSpecification(
@@ -51,7 +51,7 @@ def create_job_schedule(batch_client, job_schedule_id, vm_size, vm_count):
                     ),
                 ),
                 application_package_references=[batchmodels.ApplicationPackageReference(
-                    application_id="commodity_forecasting", version="2"
+                    application_id="azure_batch", version="1"
                 )],
             ),
             keep_alive=False,
@@ -66,11 +66,12 @@ def create_job_schedule(batch_client, job_schedule_id, vm_size, vm_count):
         on_all_tasks_complete=batchmodels.OnAllTasksComplete.terminate_job,
         job_manager_task=batchmodels.JobManagerTask(
             id="JobManagerTask",
+            #specify the command that needs to run recursively in job_schedular
             command_line="/bin/bash -c \" python3 "
                          "$AZ_BATCH_APP_PACKAGE_azure_batch_1/azure_batch/azure_batch_main.py\""
         ))
 
-
+    #mention the interval of the job schedular
     schedule = batchmodels.Schedule(
         recurrence_interval=datetime.timedelta(days=15))
 
