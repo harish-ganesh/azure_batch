@@ -1,0 +1,11 @@
+_BATCH_ACCOUNT_NAME = ''  # Your batch account name
+_BATCH_ACCOUNT_KEY = ''                # Your batch account key
+_BATCH_ACCOUNT_URL = ''                # Your batch account URL
+_POOL_ID = 'azure_batch_test_pool'     # Your Pool ID
+_POOL_NODE_COUNT = 2                   # Pool node count
+_POOL_VM_SIZE = 'Standard_A8_v2'       # VM Type/Size
+_JOB_ID = 'azure_batch_test_job'       # Job ID
+_JOB_SCHEDULAR_ID = "azure_batch_job_schedular"  # Your JOB_SCHEDULAR ID
+_JOB_SCHEDULAR_POOL_NODE_COUNT = 1     # Pool node count
+_JOB_SCHEDULAR_POOL_VM_SIZE = 'standard_a2m_v2'  # VM Type/Size
+_TASK_PARAMETERS = ['index1','index2']  #each parameter is sent to a task as cmd line arg
